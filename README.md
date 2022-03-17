@@ -2,7 +2,7 @@
 
 Ejecución de un shellcode que muestra el fichero /etc/passwd guardado en una variable global, dando los permisos de ejecución haciendo una llamada mprotect(2), cuya estructura esta hecha a partir de instruciones de una página ejecutable de la libc. Dejo una pequeña memoria del proceso. 
 
-#Proceso
+## Proceso
 
 Para empezar, lo que hice fue buscar en la página de ayuda que argumentos hay que pasarle a la función mprotect(2) que en ensamblador AMD64 corresponde con la syscall 10 (en %rax). 
 
@@ -21,22 +21,19 @@ Para buscar la dirección de inicio del shellcode, consultamos la tabla de símb
 
 Utilizando el comando grep buscamos los gadgets que serán los siguientes:
 
-Gadget          Offset        Offset + dirección base libc
+Gadget ================ Offset ============== Offset + dirección base libc
 
-pop %rdi        0x28d90       0x7ffff7e26d90
-ret
+pop %rdi; ret ============ 0x28d90 ============ 0x7ffff7e26d90
 
-pop %rsi        0x2890f       0x7ffff7e2690f
-ret
 
-pop %rdx        0xcb1cd       0x7ffff7ec91cd
-ret
+pop %rsi; ret ============ 0x2890f ============ 0x7ffff7e2690f
 
-pop %rax        0x3ee87       0x7ffff7e3ce87
-ret
+pop %rdx; ret ============ 0xcb1cd ============ 0x7ffff7ec91cd
 
-syscall         0x580da       0x7ffff7e560da
-ret
+pop %rax; re t============ 0x3ee87 ============ 0x7ffff7e3ce87
+
+syscall; ret ============== 0x580da ============ 0x7ffff7e560da
+
 
 
 
