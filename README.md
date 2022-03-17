@@ -1,6 +1,6 @@
 # ROP-Chain
 
-Ejecución de un shellcode que muestra el fichero /etc/passwd guardado en una variable global, dando los permisos de ejecución haciendo una llamada mprotect(2), cuya estructura esta hecha a partir de instruciones de una página ejecutable de la libc. Dejo una pequeña memoria del proceso. 
+Ejecución de un shellcode que muestra el fichero /etc/passwd guardado en una variable global, dando los permisos de ejecución haciendo una llamada mprotect(2), cuya estructura esta hecha a partir de instruciones de una página ejecutable de la libc. Dejo una pequeña memoria del proceso. Es importante desactivar la aleatorización de memoria para que tenga éxito.
 
 ## Proceso
 
